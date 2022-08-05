@@ -12,5 +12,6 @@
             "utility": 1,
             "prerequisites":[3, 2]
         }
-    ]
+    ],
+    "k": 1
 }
