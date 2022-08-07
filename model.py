@@ -9,7 +9,10 @@ class Course:
         self.edges = []
 
     def __str__(self):
-        return "id: " + str(self.id) + ", name: " + str(self.name)
+        return "id: " + str(self.id) + " - name: " + str(self.name)
+
+    def __repr__(self):
+        return str(self)
 
 
 class CourseCatalog:
@@ -17,6 +20,7 @@ class CourseCatalog:
         self.courseList = []
         self.courseDict = {}
         input = json.load(jsonFile)
+        self.coursesRequired = input['k']
         for c in input['courses']:
             prerequisites = c['prerequisites']
             course = Course(c['courseId'], c['name'], c['utility'])
