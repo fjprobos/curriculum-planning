@@ -1,0 +1,41 @@
+{
+    "courses": [
+        {
+            "courseId": 1,
+            "name": "A",
+            "utility": -900,
+            "prerequisites":[]
+        },
+        {
+            "courseId": 2,
+            "name": "B",
+            "utility": -800,
+            "prerequisites":[1]
+        },
+        {
+            "courseId": 3,
+            "name": "C",
+            "utility": -100,
+            "prerequisites":[2]
+        },
+        {
+            "courseId": 4,
+            "name": "D",
+            "utility": -800,
+            "prerequisites":[3]
+        },
+        {
+            "courseId": 5,
+            "name": "E",
+            "utility": -850,
+            "prerequisites":[]
+        },
+        {
+            "courseId": 6,
+            "name": "F",
+            "utility": -600,
+            "prerequisites":[]
+        }
+    ],
+    "k": 3
+}
