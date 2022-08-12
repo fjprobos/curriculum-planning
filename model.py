@@ -9,7 +9,7 @@ class Course:
         self.edges = []
 
     def __str__(self):
-        return "id: " + str(self.id) + " - name: " + str(self.name)
+        return "id: {}, name: {}, utility: {}, prerequisites: {}\n".format(self.id, self.name, self.utility, self.edges)
 
     def __repr__(self):
         return str(self)

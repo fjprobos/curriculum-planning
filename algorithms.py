@@ -42,9 +42,10 @@ def exhaustiveSearch(catalog):
     order = []
 
     for p in feasiblePermutarions:
+        # print([c.id for c in p], [c.utility for c in p], sum([c.utility for c in p]))
         utility = sum([c.utility for c in p])
         if utility > maxUtility:
             maxUtility = utility
             order = p
 
-    return order, utility
+    return order, maxUtility
