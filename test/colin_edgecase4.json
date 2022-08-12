@@ -1,0 +1,49 @@
+//multiple connected components
+{
+    "courses": [
+        {
+            "courseId": 1,
+            "name": "A",
+            "utility": 200,
+            "prerequisites":[]
+        },
+        {
+            "courseId": 2,
+            "name": "B",
+            "utility": 80,
+            "prerequisites":[]
+        },
+        {
+            "courseId": 3,
+            "name": "C",
+            "utility": 900,
+            "prerequisites":[1]
+        },
+        {
+            "courseId": 4,
+            "name": "D",
+            "utility": 300,
+            "prerequisites":[]
+        },
+        {
+            "courseId": 5,
+            "name": "D",
+            "utility": 20,
+            "prerequisites":[4]
+        },
+        {
+            "courseId": 6,
+            "name": "D",
+            "utility": 9000,
+            "prerequisites":[5,7]
+        },
+        {
+            "courseId": 7,
+            "name": "D",
+            "utility": 400,
+            "prerequisites":[]
+        }
+ 
+    ],
+    "k": 3
+}

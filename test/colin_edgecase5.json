@@ -1,0 +1,49 @@
+//string
+{
+    "courses": [
+        {
+            "courseId": 1,
+            "name": "A",
+            "utility": 100,
+            "prerequisites":[]
+        },
+        {
+            "courseId": 2,
+            "name": "B",
+            "utility": 200,
+            "prerequisites":[1]
+        },
+        {
+            "courseId": 3,
+            "name": "C",
+            "utility": 800,
+            "prerequisites":[2]
+        },
+        {
+            "courseId": 4,
+            "name": "D",
+            "utility": 40,
+            "prerequisites":[3]
+        },
+        {
+            "courseId": 5,
+            "name": "D",
+            "utility": 220,
+            "prerequisites":[4]
+        },
+        {
+            "courseId": 6,
+            "name": "D",
+            "utility": 100,
+            "prerequisites":[5]
+        },
+        {
+            "courseId": 7,
+            "name": "D",
+            "utility": 200,
+            "prerequisites":[6]
+        }
+ 
+    ],
+    "k": 5
+}

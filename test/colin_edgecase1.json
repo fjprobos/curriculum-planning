@@ -1,0 +1,36 @@
+//no dependency
+{
+    "courses": [
+        {
+            "courseId": 1,
+            "name": "A",
+            "utility": 900,
+            "prerequisites":[]
+        },
+        {
+            "courseId": 2,
+            "name": "B",
+            "utility": 1200,
+            "prerequisites":[]
+        },
+        {
+            "courseId": 3,
+            "name": "C",
+            "utility": 1500,
+            "prerequisites":[]
+        },
+        {
+            "courseId": 4,
+            "name": "D",
+            "utility": 800,
+            "prerequisites":[]
+        },
+        {
+            "courseId": 5,
+            "name": "E",
+            "utility": 50,
+            "prerequisites":[]
+        }
+    ],
+    "k": 2
+}
