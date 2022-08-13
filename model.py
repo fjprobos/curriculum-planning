@@ -17,17 +17,18 @@ class Course:
 
 class CourseCatalog:
     def __init__(self, jsonFile):
-        self.courseList = []
-        self.courseDict = {}
-        input = json.load(jsonFile)
-        self.coursesRequired = input['k']
-        for c in input['courses']:
-            prerequisites = c['prerequisites']
-            course = Course(c['courseId'], c['name'], c['utility'])
-            for i in prerequisites:
-                course.edges.append(i)
-            self.courseList.append(course)
-            self.courseDict[course.id] = course
+        with open(jsonFile, 'r') as f:
+            self.courseList = []
+            self.courseDict = {}
+            input = json.load(f)
+            self.coursesRequired = input['k']
+            for c in input['courses']:
+                prerequisites = c['prerequisites']
+                course = Course(c['courseId'], c['name'], c['utility'])
+                for i in prerequisites:
+                    course.edges.append(i)
+                self.courseList.append(course)
+                self.courseDict[course.id] = course
 
     def __str__(self):
         return str(self.courseList)
