@@ -22,7 +22,7 @@ class Verifier:
         for _ in range(10000):
             solution.solve(catalog)
         endTime = datetime.now()
-        return {"algorithm": solution.solutionName, "test": os.path.basename(caseFile), "time": (endTime-startTime).total_seconds()}
+        return {"algorithm": solution.solutionName, "test": os.path.basename(caseFile), "nodes": len(catalog.courseList), "edges": catalog.prerequisitesCount,"time": (endTime-startTime).total_seconds()}
 
 
 # verifier = Verifier()

@@ -1,0 +1,100 @@
+[
+    {
+        "algorithm": "greedy",
+        "test": "colin_edgecase1.json",
+        "nodes": 5,
+        "edges": 0,
+        "time": 0.214955
+    },
+    {
+        "algorithm": "exhaustive search",
+        "test": "colin_edgecase1.json",
+        "nodes": 5,
+        "edges": 0,
+        "time": 0.210326
+    },
+    {
+        "algorithm": "greedy",
+        "test": "colin_edgecase2.json",
+        "nodes": 6,
+        "edges": 6,
+        "time": 0.004558
+    },
+    {
+        "algorithm": "exhaustive search",
+        "test": "colin_edgecase2.json",
+        "nodes": 6,
+        "edges": 6,
+        "time": 0.015391
+    },
+    {
+        "algorithm": "greedy",
+        "test": "colin_edgecase3.json",
+        "nodes": 6,
+        "edges": 5,
+        "time": 0.349734
+    },
+    {
+        "algorithm": "exhaustive search",
+        "test": "colin_edgecase3.json",
+        "nodes": 6,
+        "edges": 5,
+        "time": 3.008824
+    },
+    {
+        "algorithm": "greedy",
+        "test": "colin_edgecase4.json",
+        "nodes": 7,
+        "edges": 4,
+        "time": 0.244391
+    },
+    {
+        "algorithm": "exhaustive search",
+        "test": "colin_edgecase4.json",
+        "nodes": 7,
+        "edges": 4,
+        "time": 1.046926
+    },
+    {
+        "algorithm": "greedy",
+        "test": "colin_edgecase5.json",
+        "nodes": 7,
+        "edges": 6,
+        "time": 0.219983
+    },
+    {
+        "algorithm": "exhaustive search",
+        "test": "colin_edgecase5.json",
+        "nodes": 7,
+        "edges": 6,
+        "time": 7.344973
+    },
+    {
+        "algorithm": "greedy",
+        "test": "test1.json",
+        "nodes": 7,
+        "edges": 5,
+        "time": 0.224236
+    },
+    {
+        "algorithm": "exhaustive search",
+        "test": "test1.json",
+        "nodes": 7,
+        "edges": 5,
+        "time": 0.891033
+    },
+    {
+        "algorithm": "greedy",
+        "test": "test2.json",
+        "nodes": 6,
+        "edges": 3,
+        "time": 0.114932
+    },
+    {
+        "algorithm": "exhaustive search",
+        "test": "test2.json",
+        "nodes": 6,
+        "edges": 3,
+        "time": 0.539673
+    }
+]

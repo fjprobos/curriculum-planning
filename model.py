@@ -22,11 +22,13 @@ class CourseCatalog:
             self.courseDict = {}
             input = json.load(f)
             self.coursesRequired = input['k']
+            self.prerequisitesCount = 0
             for c in input['courses']:
                 prerequisites = c['prerequisites']
                 course = Course(c['courseId'], c['name'], c['utility'])
                 for i in prerequisites:
                     course.edges.append(i)
+                self.prerequisitesCount += len(prerequisites)
                 self.courseList.append(course)
                 self.courseDict[course.id] = course
 
