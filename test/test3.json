@@ -1,0 +1,29 @@
+{
+    "courses": [
+        {
+            "courseId": 1,
+            "name": "A",
+            "utility": -200,
+            "prerequisites":[]
+        },
+        {
+            "courseId": 2,
+            "name": "B",
+            "utility": -500,
+            "prerequisites":[]
+        },
+        {
+            "courseId": 3,
+            "name": "C",
+            "utility": -1000,
+            "prerequisites":[1]
+        },
+        {
+            "courseId": 4,
+            "name": "D",
+            "utility": -100,
+            "prerequisites":[2]
+        }
+    ],
+    "k": 2
+}
