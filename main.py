@@ -1,11 +1,11 @@
 import model
-from algorithms import Solution, ExhaustiveSearchSolution, GreedySolution
+from algorithms import Solution, ExhaustiveSearchSolution, DPSolution
 from verifier import Verifier
 import os
 import json
 
 if __name__ == "__main__":
-    greedy = GreedySolution()
+    dp = DPSolution()
     exhaustiveSearch = ExhaustiveSearchSolution()
     verifier = Verifier()
 
@@ -16,7 +16,7 @@ if __name__ == "__main__":
     for f in os.listdir(testFolder):
         if f.endswith('.json'):
             testFile = os.path.join(testFolder, f)
-            result = verifier.compareSolution(testFile, greedy, exhaustiveSearch)
+            result = verifier.compareSolution(testFile, dp, exhaustiveSearch)
             print(f, "Pass" if result else "Fail")
 
             if result:
@@ -32,7 +32,7 @@ if __name__ == "__main__":
     for f in os.listdir(testFolder):
         if f.endswith('.json'):
             testFile = os.path.join(testFolder, f)
-            result1 = verifier.benchmarkTestCase(testFile, greedy)
+            result1 = verifier.benchmarkTestCase(testFile, dp)
             result2 = verifier.benchmarkTestCase(testFile, exhaustiveSearch)
             print(result1, result2)
             results.append(result1)

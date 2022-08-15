@@ -59,74 +59,87 @@ class ExhaustiveSearchSolution(Solution):
         return [c.id for c in order], maxUtility
 
 
-class GreedySolution(Solution):
+class DPSolution(Solution):
 
     def __init__(self):
-        self.catalog = None
-        self.mergedUtility = {}
-        self.chosenCourses = []
-        self.solutionName = "greedy"
+        self.solutionName = "dynamic programming"
 
-    def solve(self, catalog):
-        self.catalog = catalog
-        self.mergedUtility = {}
-        self.chosenCourses = []
+    # Use topological sort to generate a list of ids in order
+    def __topologicalSort__(self, catalog: CourseCatalog):
+        """
+        :param catalog: CourseCatalog object representing the graph with the entire course offering.
+        :return: a list of course ids after topological sort that follows the dependency order
+        """
+        topoSortedIds = []
+        # track which node is visited
+        visited = {}
 
-        while len(self.chosenCourses) < self.catalog.coursesRequired:
-            self.__mergeUtility__()
-            avgUtilityList = []
-            for id in self.mergedUtility:
-                if self.mergedUtility[id][0] != 0:
-                    avgUtilityList.append([id] + self.mergedUtility[id])
-
-            avgUtilityList = sorted(avgUtilityList, key=lambda x: - x[1] / x[2])
-
-            for mergedCourseTuple in avgUtilityList:
-                courseId = mergedCourseTuple[0]
-                mergedNum = mergedCourseTuple[2]
-
-                if len(self.chosenCourses) + mergedNum <= self.catalog.coursesRequired:
-                    self.__pickCourse__(courseId)
-                    break
-
-            # print("chosen", self.chosenCourses)
-
-        totalUtility = 0
-        for chosenId in self.chosenCourses:
-            totalUtility += self.catalog.courseDict[chosenId].utility
-
-        return self.chosenCourses, totalUtility
-
-    def __pickCourse__(self, courseId):
-        self.chosenCourses.append(courseId)
-        # self.mergedUtility[courseId][0] = 0
-        for preId in self.catalog.courseDict[courseId].edges:
-            if preId not in self.chosenCourses:
-                self.__pickCourse__(preId)
-
-    # merge course utilities
-    def __mergeUtility__(self):
-        visited = [False] * (len(self.catalog.courseList) + 1)
-        for chosenId in self.chosenCourses:
-            visited[chosenId] = True
-            self.mergedUtility[chosenId] = [0, 0]
-
-        def dfsMerge(courseId):
-            if visited[courseId]:
-                return self.mergedUtility[courseId]
+        # recursively add node to the topoSortedIds list
+        # Add all prerequisite nodes before adding current node
+        def dfs(courseId):
+            if courseId in visited:
+                return
             visited[courseId] = True
+            for preId in catalog.courseDict[courseId].edges:
+                dfs(preId)
+            topoSortedIds.append(courseId) 
+            
+        # for every node, we recursively add its prerequsites
+        # if a node if visited, we can ignore it because it's already in the list 
+        for cid in catalog.courseDict:
+            dfs(cid)
 
-            merged = self.catalog.courseDict[courseId].utility
-            count = 1
-            for pre in self.catalog.courseDict[courseId].edges:
-                preMerged, preCount = dfsMerge(pre)
-                merged += preMerged
-                count += preCount
+        # return the topological sorted list
+        return topoSortedIds
+        
 
-            self.mergedUtility[courseId] = [merged, count]
-            return merged, count
+    # the main function to solve the problem
+    def solve(self, catalog: CourseCatalog):
+        """
+        :param catalog: CourseCatalog object representing the graph with the entire course offering.
+        :return: a list of course ids after topological sort that follows the dependency order
+        """
+        # get the number of required courses
+        k = catalog.coursesRequired
 
-        for course in self.catalog.courseList:
-            if not visited[course.id]:
-                merged, count = dfsMerge(course.id)
-                self.mergedUtility[course.id] = [merged, count]
+        # acquire a list of course ids that follows the dependency order
+        topoSortedIds = self.__topologicalSort__(catalog)
+
+        # create a dp array
+        # dp[x][s] means that taking x nodes, the utility value of combination s 
+        dp = [{} for _ in range(k + 1)] 
+
+        # base case
+        # initialize dp with "taking 0 node" with "empty set" = 0 utility
+        dp[0][()] = 0
+
+        # iterate from 1 to k, because we need to pick k courses
+        for iter in range(1, k+1):
+            # for any set in the previous iteration
+            for s in dp[iter-1]:
+                # traverse through all ids
+                for id in topoSortedIds:
+                    if id not in s:
+                        # a course is only valid to be expended into set s, if all
+                        # the prerequisites courses are in s 
+                        valid = True
+                        for preId in catalog.courseDict[id].edges:
+                            if preId not in s:
+                                valid = False
+                        
+                        # state transition function
+                        # from the previous iteration with set s we add new id to s
+                        # update utility for the current iteration with s+(id)
+                        if valid: 
+                            dp[iter][s + (id,)] = dp[iter-1][s] + catalog.courseDict[id].utility
+                    
+        # Get the maximum possible utility and the corresponding combination
+        maxComb = []
+        maxUtility = -float('inf')
+        for comb in dp[k]:
+            if dp[k][comb] > maxUtility:
+                maxUtility = dp[k][comb]
+                maxComb = comb
+
+        # return the result tuple
+        return maxComb, maxUtility

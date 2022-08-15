@@ -1,5 +1,5 @@
 from model import CourseCatalog
-from algorithms import Solution, ExhaustiveSearchSolution, GreedySolution
+from algorithms import Solution, ExhaustiveSearchSolution, DPSolution
 from datetime import datetime
 
 import os
@@ -25,9 +25,12 @@ class Verifier:
         return {"algorithm": solution.solutionName, "test": os.path.basename(caseFile), "nodes": len(catalog.courseList), "edges": catalog.prerequisitesCount,"time": (endTime-startTime).total_seconds()}
 
 
-# verifier = Verifier()
-# greedy = GreedySolution()
-# exhaustiveSearch = ExhaustiveSearchSolution()
-# verifier.solveTestCase("test/test1.json", greedy)
-# print(verifier.benchmarkTestCase("test/test1.json", greedy))
-# print(verifier.benchmarkTestCase("test/test1.json", exhaustiveSearch))
+if __name__ == "__main__":
+    verifier = Verifier()
+    # greedy = GreedySolution()
+    # exhaustiveSearch = ExhaustiveSearchSolution()
+    dp = DPSolution()
+    # verifier.solveTestCase("test/test1.json", greedy)
+    print(verifier.solveTestCase("test/test2.json", dp))
+    # print(verifier.benchmarkTestCase("test/test1.json", greedy))
+    # print(verifier.benchmarkTestCase("test/test1.json", exhaustiveSearch))
